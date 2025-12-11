@@ -34,6 +34,12 @@ return {
 				end,
 			},
 			{
+				"<leader>&",
+				function()
+					require("harpoon"):list():select(4)
+				end,
+			},
+			{
 				"<leader>ht",
 				function()
 					local harpoon = require("harpoon")

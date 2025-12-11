@@ -15,9 +15,12 @@ return {
 		keys = {
 			{ "<leader>tf", "<cmd>Telescope find_files<cr>", desc = "find files" },
 			{ "<leader>ts", "<cmd>Telescope grep_string<cr>", desc = "grep string" },
+			{ "<leader>tc", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "grep string" },
 			{ "<leader>tg", "<cmd>Telescope live_grep<cr>", desc = "live grep" },
+			{ "<leader>tr", "<cmd>Telescope lsp_references<cr>", desc = "lsp references" },
 			{ "<leader>gs", "<cmd>Telescope git_status<cr>", desc = "git status" },
-			{ "<leader>gc", "<cmd>Telescope git_commits<cr>", desc = "git status" },
+			{ "<leader>gc", "<cmd>Telescope git_commits<cr>", desc = "git commits" },
+			{ "<leader>gb", "<cmd>Telescope git_bcommits<cr>", desc = "git buffer commits" },
 			{ "<leader>wa", "<cmd>lua require('telescope').extensions.git_worktree.create_git_worktree()<CR>" },
 			{ "<leader>wo", "<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<CR>" },
 			{

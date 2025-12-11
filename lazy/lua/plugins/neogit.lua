@@ -6,7 +6,7 @@ return {
 		"nvim-telescope/telescope.nvim",
 	},
 	config = true,
-	lazy = true,
+	lazy = false,
 	keys = {
 		{ "<leader>ng", "<cmd>Neogit<cr>", { silent = true, noremap = true } },
 	},

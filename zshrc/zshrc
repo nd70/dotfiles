@@ -5,109 +5,29 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
-# Path to your oh-my-zsh installation.
-export ZSH="/Users/Z0077TB/.oh-my-zsh"
-export PATH=/usr/local/bin:/Users/Z0077TB/.local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin:/Library/TeX/texbin:/Library/Application\ Support/CDM/bin:/usr/local/munki:/Users/Z0077TB/.sdkman/candidates/scala/current/bin:/Users/Z0077TB/.sdkman/candidates/sbt/current/bin:/Users/Z0077TB/.sdkman/candidates/java/current/bin:/Users/Z0077TB/bin:/usr/local/opt/fzf/bin:/Users/Z0077TB/bin:/Users/Z0077TB/bin:/Users/Z0077TB/bin
+# Path to your Oh My Zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-# ZSH_THEME="robbyrussell"
 ZSH_THEME="powerlevel10k/powerlevel10k"
-path+=("/Users/Z0077TB/bin")
-export PATH
+# path+=("/Users/Z0077TB/bin")
+# export PATH
 
 export EDITOR=nvim
 
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in $ZSH/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
-
-# Uncomment the following line to use case-sensitive completion.
+# Standard settings
 CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to automatically update without prompting.
 DISABLE_UPDATE_PROMPT="true"
+ENABLE_CORRECTION="false"
 
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS="true"
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# Caution: this setting can cause issues with multiline prompts (zsh 5.7.1 and newer seem to work)
-# See https://github.com/ohmyzsh/ohmyzsh/issues/5765
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# You can set one of the optional three formats:
-# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# or set a custom format using the strftime function format specifications,
-# see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
 plugins=(git docker docker-compose poetry)
 
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-
+# ------------ Functions ----------------
 # use fzf to open a file with vim
 function vif() {
     local fname
@@ -116,116 +36,20 @@ function vif() {
 }
 
 function lp() {
-    ls *.py | fzf \
+    local file=$(ls *.py | fzf \
         --height 40% --layout reverse --info inline --border \
         --preview="bat --color=always --style=numbers --line-range :500 {} --theme='Monokai Extended Origin'" \
-        --header-lines=0
-}
-
-
-bindkey -s '^N' 'vif^M'
-
-# open zshrc with <c-z>
-bindkey -s '^Z' 'nvim ~/.zshrc^M'
-
-# open only python files
-bindkey -s '^P' 'lp^M'
-
-# open lua folder with <c-l>
-bindkey -s '^W' 'nvim ~/.config/nvim/lua^M'
-
-# ssh into br3
-bindkey -s '^Y' 'ssh edge.bigred3.target.com^M'
-
-# ------ Dont let vim/imgcat open certian file types -------
-zstyle ':completion:*:*:vim:*:*files' ignored-patterns '*.png' '*.pdf'
-zstyle ':completion:*:*:imgcat:*:*files' ignored-patterns '*.py' '*.mat'
-
-# --- Exports --------
-# GOPATH
-export GOPATH=$HOME/code/go_workspace
-export PATH=$PATH:$(go env GOPATH)/bin
-
-# Bat theme
-export BAT_THEME="gruvbox-dark"
-
-# sbt memory
-export SBT_OPTS="-Xmx2G -XX:MaxMetaspaceSize=2G -XX:MaxPermSize=2G -XX:+CMSClassUnloadingEnabled"
-
-# nvim rtp home
-export XDG_CONFIG_HOME="/Users/Z0077TB/.config/"
-
-# export LS_COLORS
-source ~/.lscolors.sh
-
-# Source at the end so the colors load. Weird zsh qurik
-source $ZSH/oh-my-zsh.sh
-
-# ------- Aliases ----------------
-alias dircolors='gdircolors'
-alias lt='eza --tree --level=2 --long --icons --git -s mod'
-alias l='eza --level=1 --long --icons --git -s mod'
-alias ld='eza --long --git --icons -d */'
-alias todo='rg -l " BUG:| BUILD:| CHORE:| CI:| DOCS:| FEAT:| FIX:| ISSUE:| HACK:| PERF:| REFACTOR:| REVERT:| STYLE:| TEST:| TODO:| WARN:" -t "py"'
-alias vim="nvim"
-alias icd="ssh SVDFECLSTD@edge.bigred3.target.com"
-alias ics="ssh SVDFECLSTS@edge.bigred3.target.com"
-alias icp="ssh SVDFECLSTP@edge.bigred3.target.com"
-alias clust="source ~/virtual_environments/clustering/bin/activate"
-alias bayes="source ~/virtual_environments/bayes/bin/activate"
-alias chron="source ~/virtual_environments/code_chronicles/bin/activate"
-alias weather="curl wttr.in"
-
-# ----- functions ----------
-function ic() {
-    cd $HOME/Documents/GitHub/ItemClustering/ && l;
-}
-
-function notes() {
-    cd $HOME/Documents/Notes/DemandForecasting && l;
-}
-
-function chc() {
-    cd $HOME/Documents/GitHub/CodeChronicles/ && l;
-}
-
-function gi() {
-    cd $HOME/Documents/GitHub && l;
-}
-
-function ch() {
-    cd "$@" && l;
-}
-
-function sc() {
-    cd $HOME/code/test/python_scratch/2024
-}
-
-function tcins() {
-    local csv_file="$1"
-    local limit="$2"
-    local wrap="${3:-false}"
-
-    if [[ ! -f "$csv_file" ]]; then
-        echo "file not found!"
-        return 1
+        --header-lines=0)
+    if [[ -n "$file" ]]; then
+        nvim "$file"
     fi
+}
 
-    if [[ ! "$limit" =~ ^[0-9]+$ ]]; then
-        echo "limit must be a positive integer!"
-        return 1
+function cd_fzf() {
+    local dir=$(find * -type d | fzf --height 40% --layout reverse --info inline --border)
+    if [[ -n "$dir" ]]; then
+        cd "$dir"
     fi
-
-    unique_tcin=$(awk -f, 'nr > 1 {if (!seen[$1]++) print $1}' "$csv_file" | head -n "$limit")
-
-    # if wrap is enabled, wrap each value in quotes
-    if [[ "$wrap" == "true" ]]; then
-        unique_tcin=$(echo "$unique_tcin" | awk '{print "\047" $0 "\047"}')
-
-    fi
-
-    result=$(echo "$unique_tcin" | paste -sd, -)
-    echo "$result"
 }
 
 function yy() {
@@ -252,29 +76,96 @@ function fr() {
         --font.size 16 \
         --border.radius 8 \
         --window \
-        --border.width 1 \
+        --border.width 4 \
         --border.color "#515151" \
         --shadow.blur 20 \
         --shadow.x 0 \
-        --shadow.y 10 \
-        --font.family "MesloLGS NF"
+        --shadow.y 10
 }
 
+function imgcat_after() {
+  if [ -z "$1" ]; then
+    echo "Usage: files_after HH:MM"
+    return 1
+  fi
+
+  find . -type f -name '*.png' -newermt "$(date +%F) $1" -print0 | xargs -0 imgcat
+
+}
+
+# ------------- BindKeys ----------------
+bindkey -s '^N' 'vif^M'
+
+# open changed git file
+bindkey -s '^D' 'nvim $(git diff --name-only | fzf --select-1 --exit-0 || echo $(git diff --name-only | head -n 1))^M'
+
+# open zshrc with <c-z>
+bindkey -s '^Z' 'nvim ~/.zshrc^M'
+
+# source ~/.zshrc
+bindkey -s '^S' 'source ~/.zshrc^M'
+
+# open only python files
+bindkey -s '^P' 'lp^M'
+
+# easy jumping to git repos
+bindkey -s '^G' 'cd ~/Documents/GitHub/'
+
+# open lua folder with <c-l>
+bindkey -s '^W' 'nvim ~/.config/nvim/lua/plugins/^M'
+
+# fuzzy cd
+bindkey -s '^H' 'cd_fzf^M'
+
+# copy SVDFESTCKOTERHDD pwd to clipboard
+bindkey -s '^X' 'dev_pwd^M'
+
+# ------ Dont let vim/imgcat open certian file types -------
+zstyle ':completion:*:*:vim:*:*files' ignored-patterns '*.png' '*.pdf'
+zstyle ':completion:*:*:imgcat:*:*files' ignored-patterns '*.py' '*.mat''*.csv'
+
+# Bat theme
+export BAT_THEME="gruvbox-dark"
+
+# sbt memory
+export SBT_OPTS="-Xmx2G -XX:MaxMetaspaceSize=2G -XX:MaxPermSize=2G -XX:+CMSClassUnloadingEnabled"
+
+# nvim rtp home
+export XDG_CONFIG_HOME="/Users/Z0077TB/.config/"
+
+# export LS_COLORS
+source ~/.lscolors.sh
+
+# Source at the end so the colors load. Weird zsh qurik
+source $ZSH/oh-my-zsh.sh
+
+# ------- Aliases ----------------
+# For a full list of active aliases, run `alias`.
+alias dircolors='gdircolors'
+alias lt='eza --tree --level=2 --long --icons --git -s mod'
+alias l='eza --level=1 --long --icons --git -s mod'
+alias ld='eza --long --git --icons -d */'
+alias todo='rg -l " BUG:| BUILD:| CHORE:| CI:| DOCS:| FEAT:| FIX:| ISSUE:| HACK:| PERF:| REFACTOR:| REVERT:| STYLE:| TEST:| TODO:| WARN:" -t "py"'
+alias vim="nvim"
+alias glog="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cblue[%an]%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
+alias lg="lazygit"
+
+# ---------- Functions with aliases ----------
+function hh() {
+    cd $(git rev-parse --show-toplevel) && l
+}
+
+function ch() {
+    cd "$@" && l;
+}
+
+# ------------ Final exports and source --------------
 # zoxide
 eval "$(zoxide init zsh)"
 
-# Automatically reload .zshrc if being sourced in a tmux session
-if [[ -n "$TMUX" ]] && [[ ! "$TERM" =~ screen ]]; then
-  source ~/.zshrc
-fi
-
 # FZF Stuff
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow --exclude .git"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -283,24 +174,19 @@ export PATH="/usr/local/opt/sphinx-doc/bin:$PATH"
 # Created by `pipx` on 2024-03-19 16:33:13
 export PATH="$PATH:/Users/Z0077TB/.local/bin"
 
-source ~/.fonts/*.sh
-source ~/virtual_environments/clustering/bin/activate
+source ~/.config/fzf/key-bindings.zsh
+source ~/.config/fzf/completions.zsh
 
-fzf-cd-widget() {
-  local cmd="${FZF_ALT_C_COMMAND:-"command find -L . -mindepth 1 \\( -path '*/\\.*' -o -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \\) -prune \
-    -o -type d -print 2> /dev/null | cut -b3-"}"
-  setopt localoptions pipefail no_aliases 2> /dev/null
-  local dir="$(eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --bind=ctrl-z:ignore $FZF_DEFAULT_OPTS $FZF_ALT_C_OPTS" $(__fzfcmd) +m)"
-  if [[ -z "$dir" ]]; then
-    zle redisplay
-    return 0
-  fi
-  zle push-line # Clear buffer. Auto-restored on next prompt.
-  BUFFER="cd ${(q)dir}"
-  zle accept-line
-  local ret=$?
-  unset dir # ensure this doesn't end up appearing in prompt expansion
-  zle reset-prompt
-  return $ret
-}
-bindkey '^H' fzf-cd-widget
+# source VE. I dont like this but it's necessary for floating terminals
+# source ~/virtual_environments/stockout-enrichment//bin/activate
+
+export SSL_CERT_FILE=$HOME/tgt-ca-bundle.crt
+export REQUESTS_CA_BUNDLE=$HOME/tgt-ca-bundle.crt
+export AWS_CA_BUNDLE=$HOME/tgt-ca-bundle.crt
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"

@@ -10,8 +10,11 @@ return {
 		{ "<leader>sh", "<cmd>Gitsigns stage_hunk<cr>" },
 		{ "<leader>uh", "<cmd>Gitsigns undo_stage_hunk<cr>" },
 		{ "<leader>sb", "<cmd>Gitsigns blame_line<cr>" },
-		{ "<leader>sp", "<cmd>Gitsigns preview_line<cr>" },
+		{ "<leader>sB", "<cmd>Gitsigns blame<cr>" },
+		{ "<leader>sp", "<cmd>Gitsigns preview_hunk<cr>" },
 		{ "<leader>sd", "<cmd>Gitsigns toggle_deleted<cr>" },
+		{ "<leader>dm", "<cmd>DiffviewOpen main..HEAD<cr>" },
+		{ "<leader>dM", "<cmd>DiffviewClose<cr>" },
 	},
 	lazy = true,
 }

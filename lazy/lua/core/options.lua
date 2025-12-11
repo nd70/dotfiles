@@ -1,29 +1,29 @@
 local opts = {
-	guicursor = "",
-	number = true,
-	relativenumber = true,
-	errorbells = false,
-	shiftwidth = 4,
-	softtabstop = 4,
-	tabstop = 4,
-	expandtab = true,
-	smartindent = false,
-	wrap = false,
-	textwidth = 88,
-	swapfile = false,
 	backup = false,
-	undofile = true,
-	undodir = os.getenv("HOME") .. "/.vim/undodir",
+	cmdheight = 1,
+	colorcolumn = "120",
+	errorbells = false,
+	expandtab = true,
+	guicursor = "",
 	hlsearch = false,
 	incsearch = true,
-	termguicolors = true,
+	number = true,
+	relativenumber = true,
 	scrolloff = 8,
+	shiftwidth = 4,
 	signcolumn = "yes",
-	cmdheight = 1,
-	updatetime = 50,
-	colorcolumn = "88",
-	splitright = true,
+	smartindent = false,
+	softtabstop = 4,
 	splitbelow = true,
+	splitright = true,
+	swapfile = false,
+	tabstop = 4,
+	termguicolors = true,
+	textwidth = 120,
+	undodir = os.getenv("HOME") .. "/.vim/undodir",
+	undofile = true,
+	updatetime = 50,
+	wrap = false,
 }
 
 -- Set options from table
@@ -40,3 +40,6 @@ vim.cmd([[
     au TextYankPost * silent! lua vim.highlight.on_yank({higroup="Visual", timeout=50})
   augroup END
 ]])
+
+-- set ruff directory
+vim.env.RUFF_CONFIG = vim.fn.expand("~/.config/ruff/ruff.toml")

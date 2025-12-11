@@ -11,6 +11,12 @@ return {
 				["<C-s>"] = false,
 				["<C-v>"] = "actions.select_vsplit",
 			},
+			-- view_options = {
+			-- 	show_hidden = true,
+			-- 	is_hidden_file = function(name)
+			-- 		return vim.startswith(name, ".config")
+			-- 	end,
+			-- },
 		})
 	end,
 	keys = {

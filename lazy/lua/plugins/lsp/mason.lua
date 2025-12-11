@@ -19,12 +19,11 @@ return {
 			},
 		})
 
+		-- ensure CLI/tools are installed
 		mason_tool_installer.setup({
 			ensure_installed = {
 				"stylua",
-				"isort",
-				"black",
-				"pylsp",
+				"ruff",
 			},
 		})
 	end,
