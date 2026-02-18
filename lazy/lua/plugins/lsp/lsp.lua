@@ -128,7 +128,7 @@ return {
 				pylsp = {
 					plugins = {
 						pycodestyle = {
-							ignore = { "E501", "W605", "E203", "W391", "W503" },
+							ignore = { "E501", "W605", "E203", "W391", "W503", "PLC0415" },
 							maxLineLength = 90,
 						},
 					},
@@ -139,7 +139,7 @@ return {
 		-- ruff (pass CLI args via init_options so diagnostics follow your preferences)
 		register_and_enable("ruff", {
 			init_options = {
-				args = { "--line-length=120", "--ignore=E501,W605,E203,W391,W503" },
+				args = { "--line-length=120", "--ignore=E501,W605,E203,W391,W503,PLC0415" },
 			},
 		})
 
@@ -147,7 +147,7 @@ return {
 		register_and_enable("lua_ls", {
 			settings = {
 				Lua = {
-					diagnostics = { globals = { "vim" } },
+					diagnostics = { globals = { "vim", "describe", "it", "assert", "are" } },
 					completion = { callSnippet = "Replace" },
 				},
 			},
