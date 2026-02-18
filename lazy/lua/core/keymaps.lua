@@ -2,7 +2,6 @@ local opts = { noremap = true, silent = true }
 
 -- normal mode
 vim.keymap.set("n", "<leader>q", "<ESC>:q<CR>", opts)
-vim.keymap.set("n", "<leader>x", "<ESC>:qa!<CR>", opts)
 vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
