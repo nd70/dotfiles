@@ -13,8 +13,6 @@ return {
 		{ "<leader>sB", "<cmd>Gitsigns blame<cr>" },
 		{ "<leader>sp", "<cmd>Gitsigns preview_hunk<cr>" },
 		{ "<leader>sd", "<cmd>Gitsigns toggle_deleted<cr>" },
-		{ "<leader>dm", "<cmd>DiffviewOpen main..HEAD<cr>" },
-		{ "<leader>dM", "<cmd>DiffviewClose<cr>" },
 	},
 	lazy = true,
 }

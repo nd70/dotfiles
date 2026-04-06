@@ -2,6 +2,7 @@ local opts = { noremap = true, silent = true }
 
 -- normal mode
 vim.keymap.set("n", "<leader>q", "<ESC>:q<CR>", opts)
+-- vim.keymap.set("n", "<leader>x", "<ESC>:qa!<CR>", opts)
 vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
@@ -16,6 +17,12 @@ vim.keymap.set("n", "<C-k>", "<C-w><C-k>")
 vim.keymap.set("n", '<leader>"', "mnvipy`n")
 vim.keymap.set("n", "<leader>'", 'mnvip_v$h"+y`n')
 vim.keymap.set("n", "<leader>dc", [[:%s/\v(\s+)?# .*//gcc<CR>]], { desc = "Delete Python comments" })
+vim.keymap.set(
+	"n",
+	"<leader>T",
+	"<cmd>split | resize 30% | terminal<cr>",
+	{ desc = "open terminal in horizontal split" }
+)
 
 -- terminal mode
 vim.keymap.set("t", "<c-\\>", "<c-\\><c-n>", opts)

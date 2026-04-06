@@ -1,40 +1,57 @@
 return {
-	"nvim-treesitter/nvim-treesitter",
-	event = { "BufReadPre", "BufNewFile" },
-	build = ":TSUpdate",
-	dependencies = {
-		"nvim-treesitter/nvim-treesitter-textobjects",
+	{
+		"nvim-treesitter/nvim-treesitter",
+		branch = "main",
+		lazy = false,
+		build = ":TSUpdate",
+		config = function()
+			require("nvim-treesitter").setup({
+				install_dir = vim.fn.stdpath("data") .. "/site",
+			})
+
+			vim.api.nvim_create_autocmd("FileType", {
+				pattern = { "python", "lua", "go", "scala", "yaml", "markdown", "bash", "vim", "vimdoc" },
+				callback = function()
+					vim.treesitter.start()
+					vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+				end,
+			})
+		end,
 	},
 
-	config = function()
-		local treesitter = require("nvim-treesitter.configs")
+	{
+		"nvim-treesitter/nvim-treesitter-textobjects",
+		branch = "main",
+		config = function()
+			require("nvim-treesitter-textobjects").setup({
+				select = { enable = true, lookahead = true },
+				move = { set_jumps = true },
+			})
 
-		treesitter.setup({ -- enable syntax highlighting
-			highlight = { enable = true },
-			indent = { enable = true },
-			autopairs = { enable = true },
-			autotag = { enable = true },
+			local select = require("nvim-treesitter-textobjects.select")
+			local move = require("nvim-treesitter-textobjects.move")
 
-			ensure_installed = {
-				"yaml",
-				"markdown",
-				"bash",
-				"lua",
-				"vim",
-				"python",
-				"go",
-				"scala",
-				"vimdoc",
-			},
-			incremental_selection = {
-				enable = true,
-				keymaps = {
-					init_selection = "<C-space>",
-					node_incremental = "<C-space>",
-					scope_incremental = "<TAB>",
-					node_decremental = "<bs>",
-				},
-			},
-		})
-	end,
+			local function map_obj(keys, query)
+				vim.keymap.set({ "x", "o" }, keys, function()
+					select.select_textobject(query, "textobjects")
+				end)
+			end
+
+			map_obj("am", "@function.outer")
+			map_obj("im", "@function.inner")
+			map_obj("ac", "@class.outer")
+			map_obj("ic", "@class.inner")
+			map_obj("ai", "@conditional.outer")
+			map_obj("ii", "@conditional.inner")
+			map_obj("al", "@loop.outer")
+			map_obj("il", "@loop.inner")
+
+			vim.keymap.set({ "n", "x", "o" }, "]m", function()
+				move.goto_next_start("@function.outer", "textobjects")
+			end)
+			vim.keymap.set({ "n", "x", "o" }, "[m", function()
+				move.goto_previous_start("@function.outer", "textobjects")
+			end)
+		end,
+	},
 }
