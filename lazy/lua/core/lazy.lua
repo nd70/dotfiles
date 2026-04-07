@@ -48,28 +48,28 @@ require("lazy").setup({
 	{ import = "plugins.lsp" },
 
 	-- Local development plugin (axiom.nvim) — lazy will prefer ~/projects/axiom.nvim
-	{
-		"nd70/axiom.nvim",
-		dev = true,
-		-- optional: you can also set keys/config here for dev convenience
-		keys = {
-			{
-				"<leader>xx",
-				"<cmd>AxiomRunCell<cr>",
-				mode = "n",
-				noremap = true,
-				silent = true,
-				desc = "Run Axiom cell",
-			},
-		},
-		config = function()
-			require("axiom").setup({
-				runner_socket = "/tmp/axiom.sock",
-				image_render = "iterm",
-				auto_run_on_save = "cell",
-			})
-		end,
-	},
+	-- {
+	-- 	"nd70/axiom.nvim",
+	-- 	dev = true,
+	-- 	-- optional: you can also set keys/config here for dev convenience
+	-- 	keys = {
+	-- 		{
+	-- 			"<leader>xx",
+	-- 			"<cmd>AxiomRunCell<cr>",
+	-- 			mode = "n",
+	-- 			noremap = true,
+	-- 			silent = true,
+	-- 			desc = "Run Axiom cell",
+	-- 		},
+	-- 	},
+	-- 	config = function()
+	-- 		require("axiom").setup({
+	-- 			runner_socket = "/tmp/axiom.sock",
+	-- 			image_render = "iterm",
+	-- 			auto_run_on_save = "cell",
+	-- 		})
+	-- 	end,
+	-- },
 }, {
 	dev = {
 		-- where lazy looks for local plugins when you set dev = true

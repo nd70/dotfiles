@@ -40,7 +40,7 @@ return {
 
 				-- Format on save for clients that support formatting
 				local client = vim.lsp.get_client_by_id(ev.data.client_id)
-				if client and client.supports_method and client.supports_method("textDocument/formatting") then
+				if client and client:supports_method("textDocument/formatting") then
 					vim.api.nvim_create_autocmd("BufWritePre", {
 						buffer = ev.buf,
 						callback = function()
