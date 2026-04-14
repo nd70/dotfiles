@@ -30,7 +30,7 @@ require("packages.completions")
 require("packages.mason")
 require("packages.lsp")
 require("packages.conform")
-require("packages.copilot")
+-- require("packages.copilot")
 
 -- Git
 require("packages.gitsigns")

@@ -12,6 +12,10 @@
       "rev": "4074b307bec6bb8c92b59fb3544e3dc3e43fcf6d",
       "src": "https://github.com/svban/YankAssassin.nvim"
     },
+    "blink.cmp": {
+      "rev": "456d38d1cd3743926f329204c2340f3e7840aad6",
+      "src": "https://github.com/Saghen/blink.cmp"
+    },
     "cmp-buffer": {
       "rev": "b74fab3656eea9de20a9b8116afa3cfc4ec09657",
       "src": "https://github.com/hrsh7th/cmp-buffer"
@@ -138,6 +142,10 @@
       "rev": "c72328a5494b4502947a022fe69c0c47e53b6aa6",
       "src": "https://github.com/nvim-tree/nvim-web-devicons"
     },
+    "oil.nvim": {
+      "rev": "0fcc83805ad11cf714a949c98c605ed717e0b83e",
+      "src": "https://github.com/stevearc/oil.nvim"
+    },
     "plenary.nvim": {
       "rev": "74b06c6c75e4eeb3108ec01852001636d85a932b",
       "src": "https://github.com/nvim-lua/plenary.nvim"
@@ -158,6 +166,10 @@
     "todo-comments.nvim": {
       "rev": "31e3c38ce9b29781e4422fc0322eb0a21f4e8668",
       "src": "https://github.com/folke/todo-comments.nvim"
+    },
+    "yazi.nvim": {
+      "rev": "a4c292e0cb2647773e91ae29eeb87dd26f33c6b9",
+      "src": "https://github.com/mikavilpas/yazi.nvim"
     },
     "zen-mode.nvim": {
       "rev": "8564ce6d29ec7554eb9df578efa882d33b3c23a7",
