@@ -1,0 +1,31 @@
+vim.pack.add({
+  "https://github.com/stevearc/conform.nvim",
+})
+
+local ok, conform = pcall(require, "conform")
+if not ok then
+  return
+end
+
+conform.setup({
+  formatters_by_ft = {
+    json = { "prettier" },
+    yaml = { "prettier" },
+    markdown = { "prettier" },
+    lua = { "stylua" },
+    python = { "ruff", "isort", "black" },
+  },
+  format_on_save = {
+    lsp_fallback = true,
+    async = false,
+    timeout_ms = 5000,
+  },
+})
+
+vim.keymap.set({ "n", "v" }, "<leader>cf", function()
+  conform.format({
+    lsp_fallback = true,
+    async = false,
+    timeout_ms = 5000,
+  })
+end, { desc = "Format file or range" })
