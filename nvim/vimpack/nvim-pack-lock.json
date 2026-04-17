@@ -16,6 +16,10 @@
       "rev": "456d38d1cd3743926f329204c2340f3e7840aad6",
       "src": "https://github.com/Saghen/blink.cmp"
     },
+    "clock.nvim": {
+      "rev": "6b5dc4737039a016a221d1e90970c336438d5250",
+      "src": "https://github.com/nd70/clock.nvim"
+    },
     "cmp-buffer": {
       "rev": "b74fab3656eea9de20a9b8116afa3cfc4ec09657",
       "src": "https://github.com/hrsh7th/cmp-buffer"
@@ -40,9 +44,17 @@
       "rev": "a12fd5672110c8aa7e3c8419e28c96943ca179be",
       "src": "https://github.com/github/copilot.vim"
     },
+    "csvview.nvim": {
+      "rev": "7022e18a0fbae9aecf99a3ba02b2a541edc2b8a1",
+      "src": "https://github.com/hat0uma/csvview.nvim"
+    },
     "diffview.nvim": {
       "rev": "4516612fe98ff56ae0415a259ff6361a89419b0a",
       "src": "https://github.com/sindrets/diffview.nvim"
+    },
+    "fine-cmdline.nvim": {
+      "rev": "6e646f4da6afe856e36f3d952489b723d1475638",
+      "src": "https://github.com/VonHeikemen/fine-cmdline.nvim"
     },
     "flash.nvim": {
       "rev": "fcea7ff883235d9024dc41e638f164a450c14ca2",
@@ -166,6 +178,10 @@
     "todo-comments.nvim": {
       "rev": "31e3c38ce9b29781e4422fc0322eb0a21f4e8668",
       "src": "https://github.com/folke/todo-comments.nvim"
+    },
+    "vim-floaterm": {
+      "rev": "0ab5eb8135dc884bc543a819ac7033c15e72a76b",
+      "src": "https://github.com/voldikss/vim-floaterm"
     },
     "yazi.nvim": {
       "rev": "a4c292e0cb2647773e91ae29eeb87dd26f33c6b9",

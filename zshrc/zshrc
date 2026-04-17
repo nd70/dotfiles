@@ -36,14 +36,16 @@ function vif() {
 }
 
 function lp() {
-    local file=$(ls *.py | fzf \
+    local file=$(fd --type f --extension py | fzf \
         --height 40% --layout reverse --info inline --border \
         --preview="bat --color=always --style=numbers --line-range :500 {} --theme='Monokai Extended Origin'" \
         --header-lines=0)
+
     if [[ -n "$file" ]]; then
         nvim "$file"
     fi
 }
+
 
 function cd_fzf() {
     local dir=$(find * -type d | fzf --height 40% --layout reverse --info inline --border)
@@ -94,6 +96,7 @@ function imgcat_after() {
 }
 
 # ------------- BindKeys ----------------
+# open fzf to select file to open with nvim
 bindkey -s '^N' 'vif^M'
 
 # open changed git file
@@ -112,13 +115,11 @@ bindkey -s '^P' 'lp^M'
 bindkey -s '^G' 'cd ~/Documents/GitHub/'
 
 # open lua folder with <c-l>
-bindkey -s '^W' 'nvim ~/.config/nvim/lua/plugins/^M'
+# bindkey -s '^W' 'nvim ~/.config/nvim/lua/packages/^M'
+bindkey -s '^W' 'nvim +"Oil ~/.config/nvim/lua/packages"^M'
 
 # fuzzy cd
 bindkey -s '^H' 'cd_fzf^M'
-
-# copy SVDFESTCKOTERHDD pwd to clipboard
-bindkey -s '^X' 'dev_pwd^M'
 
 # ------ Dont let vim/imgcat open certian file types -------
 zstyle ':completion:*:*:vim:*:*files' ignored-patterns '*.png' '*.pdf'
@@ -146,9 +147,13 @@ alias lt='eza --tree --level=2 --long --icons --git -s mod'
 alias l='eza --level=1 --long --icons --git -s mod'
 alias ld='eza --long --git --icons -d */'
 alias todo='rg -l " BUG:| BUILD:| CHORE:| CI:| DOCS:| FEAT:| FIX:| ISSUE:| HACK:| PERF:| REFACTOR:| REVERT:| STYLE:| TEST:| TODO:| WARN:" -t "py"'
-alias vim="nvim"
+alias n="nvim"
 alias glog="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cblue[%an]%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
 alias lg="lazygit"
+alias borders-start="brew services start borders"
+alias borders-stop="brew services stop borders"
+alias borders-refresh="brew services stop borders && brew services start borders"
+alias pt=ptpython
 
 # ---------- Functions with aliases ----------
 function hh() {
@@ -177,9 +182,6 @@ export PATH="$PATH:/Users/Z0077TB/.local/bin"
 source ~/.config/fzf/key-bindings.zsh
 source ~/.config/fzf/completions.zsh
 
-# source VE. I dont like this but it's necessary for floating terminals
-# source ~/virtual_environments/stockout-enrichment//bin/activate
-
 export SSL_CERT_FILE=$HOME/tgt-ca-bundle.crt
 export REQUESTS_CA_BUNDLE=$HOME/tgt-ca-bundle.crt
 export AWS_CA_BUNDLE=$HOME/tgt-ca-bundle.crt
@@ -190,3 +192,20 @@ export SDKMAN_DIR="$HOME/.sdkman"
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init - zsh)"
+
+# source VE. I dont like this but it's necessary for floating terminals
+source ~/.dfex
+
+
+export NVM_DIR="$HOME/.config//nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export NVM_DIR="$HOME/.config//nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# dayton
+export NODE_EXTRA_CA_CERTS="/Users/Z0077TB/.config/dayton/cacerts"
+
+if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi

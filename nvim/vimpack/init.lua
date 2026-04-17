@@ -18,7 +18,8 @@ require("packages.flash")
 require("packages.hlargs")
 require("packages.yankassassin")
 require("packages.lualine")
-require("packages.noice")
+-- require("packages.noice")
+-- require("packages.fine_cmdline")
 require("packages.zen_mode")
 
 -- Treesitter before plugins that use it
@@ -43,7 +44,7 @@ require("packages.telescope")
 require("packages.oil")
 require("packages.yazi")
 require("packages.harpoon")
-require("packages.trouble")
+-- require("packages.trouble")
 require("packages.todo")
 
 -- Utilities

@@ -34,12 +34,5 @@ end
 -- Set other options
 vim.g.netrw_buffsettings = "nu rnu"
 
-vim.cmd([[
-  augroup highlight_yank
-  autocmd!
-    au TextYankPost * silent! lua vim.highlight.on_yank({higroup="Visual", timeout=50})
-  augroup END
-]])
-
 -- set ruff directory
 vim.env.RUFF_CONFIG = vim.fn.expand("~/.config/ruff/ruff.toml")
